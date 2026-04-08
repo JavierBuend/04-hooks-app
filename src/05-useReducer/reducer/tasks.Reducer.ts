@@ -19,12 +19,20 @@ export type TaskAction=
 
 
 export const getTasksInitialState=():TaskState=>{
+// Intenta obtener los datos guardados en el navegador
+    const localSortageState= localStorage.getItem('tasks-state')
+    // Si no hay nada guardado (primera vez o caché limpia), retorna el estado inicial vacío
+    if(!localSortageState){
     return{
         todos:[],
         completed:0,
         pending:0,
         length:0,
     }
+    }// Si existen datos, convierte el string de JSON a un objeto de TypeScript
+    //! el objeto puede haber sido manipulado
+    return JSON.parse(localSortageState);
+
 
 }
 
