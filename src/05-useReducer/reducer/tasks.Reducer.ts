@@ -1,3 +1,5 @@
+import * as z from "zod";
+
 interface Todo {
   id: number;
   text: string;
@@ -17,21 +19,55 @@ export type TaskAction=
 | {type:'TOGGLE_TODO', payload: number}
 | {type:'DELETE_TODO', payload: number}
 
+//objeto de validación con zod de todo
+
+const TodoSchema=z.object({
+    id:z.number(),
+    text:z.string(),
+    completed:z.boolean(),
+})
+//objeto de validación con zod del estado
+const TaskStateSchema=z.object({
+
+todos:z.array(TodoSchema),
+length:z.number(),
+completed:z.number(),
+pending:z.number(),
+})
+
+//validar mediante zod
+
+
+
+
 
 export const getTasksInitialState=():TaskState=>{
 // Intenta obtener los datos guardados en el navegador
-    const localSortageState= localStorage.getItem('tasks-state')
+    const localStorageState= localStorage.getItem('tasks-state')
     // Si no hay nada guardado (primera vez o caché limpia), retorna el estado inicial vacío
-    if(!localSortageState){
+    if(!localStorageState){
     return{
         todos:[],
         completed:0,
         pending:0,
         length:0,
     }
-    }// Si existen datos, convierte el string de JSON a un objeto de TypeScript
+    }
+    const result=TaskStateSchema.safeParse(JSON.parse(localStorageState));
+
+    if(result.error){
+        console.log(result.error);
+            return{
+        todos:[],
+        completed:0,
+        pending:0,
+        length:0,
+    }
+    }
+    
+    // Si existen datos, convierte el string de JSON a un objeto de TypeScript
     //! el objeto puede haber sido manipulado
-    return JSON.parse(localSortageState);
+    return result.data;
 
 
 }
