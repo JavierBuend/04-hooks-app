@@ -1,4 +1,4 @@
-import { useTrafficLight } from "../hooks/useTrafficLight";
+import { useTrafficLight } from '../hooks/useTrafficLight';
 
 export const TrafficLightWithHook = () => {
   const { countdown, percentage, greenLight, redLight, yellowLight } =
@@ -10,7 +10,8 @@ export const TrafficLightWithHook = () => {
         <h1 className="text-white text-3xl font-thin">
           Semáforo con useEffect
         </h1>
-        <h2 className="text-white text-xl">coundown {countdown}</h2>
+
+        <h2 className="text-white text-xl"> Countdown {countdown} </h2>
 
         <div className="w-64 bg-gray-700 rounded-full h-2">
           <div
@@ -18,10 +19,9 @@ export const TrafficLightWithHook = () => {
             style={{ width: `${percentage}%` }}
           ></div>
         </div>
+
         <div className={`w-32 h-32 ${redLight} rounded-full`}></div>
-
         <div className={`w-32 h-32 ${yellowLight} rounded-full`}></div>
-
         <div className={`w-32 h-32 ${greenLight} rounded-full`}></div>
       </div>
     </div>

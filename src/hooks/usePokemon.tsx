@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface Pokemon {
   id: number;
@@ -16,6 +16,7 @@ export const usePokemon = ({ id }: Props) => {
 
   const getPokemonById = async (id: number) => {
     setIsLoading(true);
+
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const data = await response.json();
 
@@ -24,16 +25,19 @@ export const usePokemon = ({ id }: Props) => {
       name: data.name,
       imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
     });
+
     setIsLoading(false);
   };
+
   useEffect(() => {
     getPokemonById(id);
   }, [id]);
 
   return {
-    //props
+    // Properties
     isLoading,
     pokemon,
-    formattedId: id.toString().padStart(3, "0"),
+
+    formattedId: id.toString().padStart(3, '0'),
   };
 };

@@ -1,5 +1,5 @@
-import { useCounter } from "../hooks/useCounter";
-import { usePokemon } from "../hooks/usePokemon";
+import { useCounter } from '../hooks/useCounter';
+import { usePokemon } from '../hooks/usePokemon';
 
 export const PokemonPage = () => {
   const { counter, increment, decrement } = useCounter();
@@ -31,7 +31,7 @@ export const PokemonPage = () => {
       </h3>
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${counter}.png`}
-        alt={pokemon?.name}
+        alt={pokemon.name}
       />
 
       <div className="flex gap-2">
