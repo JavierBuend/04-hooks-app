@@ -1,5 +1,5 @@
-import { useOptimistic, useState, useTransition } from "react";
-import { toast } from "sonner";
+import { useOptimistic, useState, useTransition } from 'react';
+import { toast } from 'sonner';
 
 interface Comment {
   id: number;
@@ -13,8 +13,8 @@ export const InstagromApp = () => {
   const [isPending, startTransition] = useTransition();
 
   const [comments, setComments] = useState<Comment[]>([
-    { id: 1, text: "¡Gran foto!" },
-    { id: 2, text: "Me encanta 🧡" },
+    { id: 1, text: '¡Gran foto!' },
+    { id: 2, text: 'Me encanta 🧡' },
   ]);
 
   const [optimisticComments, addOptimisticComment] = useOptimistic(
@@ -29,11 +29,11 @@ export const InstagromApp = () => {
           optimistic: true,
         },
       ];
-    },
+    }
   );
 
   const handleAddComment = async (formData: FormData) => {
-    const messageText = formData.get("post-message") as string;
+    const messageText = formData.get('post-message') as string;
 
     addOptimisticComment(messageText);
 
@@ -41,25 +41,25 @@ export const InstagromApp = () => {
       // simular la petición http al servidor
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
-      setComments((prev) => [
-        ...prev,
-        {
-          id: new Date().getTime(),
-          text: messageText,
-        },
-      ]);
+      // setComments((prev) => [
+      //   ...prev,
+      //   {
+      //     id: new Date().getTime(),
+      //     text: messageText,
+      //   },
+      // ]);
 
       //! Este sería el código para revertir el proceso
-      //   setComments((prev) => prev);
-      //   toast('Error al agregar el comentario', {
-      //     description: 'Intente nuevamente',
-      //     duration: 10_000,
-      //     position: 'top-right',
-      //     action: {
-      //       label: 'Cerrar',
-      //       onClick: () => toast.dismiss(),
-      //     },
-      //   });
+      setComments((prev) => prev);
+      toast('Error al agregar el comentario', {
+        description: 'Intente nuevamente',
+        duration: 10_000,
+        position: 'top-right',
+        action: {
+          label: 'Cerrar',
+          onClick: () => toast.dismiss(),
+        },
+      });
     });
   };
 

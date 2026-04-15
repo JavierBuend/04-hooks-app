@@ -1,7 +1,7 @@
-import { StrictMode, Suspense } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode, Suspense } from 'react';
+import { createRoot } from 'react-dom/client';
 
-import { Toaster } from "sonner";
+import { Toaster } from 'sonner';
 
 // import { HooksApp } from './HooksApp';
 // import { TrafficLight } from './01-useState/TrafficLight';
@@ -14,14 +14,13 @@ import { Toaster } from "sonner";
 // import { MemoHook } from './06-memos/MemoHook';
 // import { MemoCounter } from './06-memos/MemoCounter';
 // import { InstagromApp } from './07-useOptimistic/InstagromApp';
-import { ClientInformation } from "./08-use-suspense/ClientInformation";
+// import { ClientInformation } from './08-use-suspense/ClientInformation';
+// import { getUserAction } from './08-use-suspense/api/get-user.action';
+import { ProfessionalApp } from './09-useContext/ProfessionalApp';
 
-import "./index.css";
-import { getUserAction } from "./08-use-suspense/api/get-user.action";
-// import { MemoCounter } from "./06-memos/MemoCounter";
-import { InstagromApp } from "./07-useOptimistic/InstagromApp";
+import './index.css';
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Toaster />
     {/* <HooksApp /> */}
@@ -34,9 +33,9 @@ createRoot(document.getElementById("root")!).render(
     {/* <ScrambleWords /> */}
     {/* <MemoHook /> */}
     {/* <MemoCounter /> */}
-    <InstagromApp />
+    {/* <InstagromApp /> */}
 
-    <Suspense
+    {/* <Suspense
       fallback={
         <div className="bg-gradient flex flex-col">
           <h1 className="text-2xl">Cargando</h1>
@@ -44,6 +43,8 @@ createRoot(document.getElementById("root")!).render(
       }
     >
       <ClientInformation getUser={getUserAction(1001)} />
-    </Suspense>
-  </StrictMode>,
+    </Suspense> */}
+
+    <ProfessionalApp />
+  </StrictMode>
 );
